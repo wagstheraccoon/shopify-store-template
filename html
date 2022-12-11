@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>{{ shop.name }} - Streetwear for the Nightlife</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>{{ shop.name }}</h1>
+    <nav>
+      {% for link in linklists.main.links %}
+        <a href="{{ link.url }}">{{ link.title }}</a>
+      {% endfor %}
+    </nav>
+  </header>
+  <main>
+    <h2>Streetwear for the Nightlife</h2>
+    <p>
+      Our streetwear clothing is designed to make you stand out on the streets and in the clubs. 
+      From vibrant graphic tees to sleek, stylish jackets, we have everything you need to make a statement. 
+      Check out our latest collections below.
+    </p>
+    <ul class="products">
+      {% for product in collections.all.products %}
+        <li>
+          <h3>{{ product.title }}</h3>
+          <img src="{{ product.featured_image.src | img_url: 'medium' }}" alt="{{ product.title }}">
+          <p>{{ product.price | money }}</p>
+          <a href="{{ product.url }}">Shop now</a>
+        </li>
+      {% endfor %}
+    </ul>
+  </main>
+  <footer>
+    <p>{{ shop.name }} | Streetwear for the Nightlife</p>
+  </footer>
+</body>
+</html>
